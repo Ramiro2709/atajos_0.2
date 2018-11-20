@@ -15,8 +15,8 @@ export class AbstractItemsProvider {
   Tipo_localidad:number;
   Categoria_id:number;
   lastName: string;
-  ip_carpeta = 'http://192.168.1.37/Atajos/';
-  ip_wamp = 'http://192.168.1.37/Atajos/get_telefonos.php';
+  ip_carpeta = 'http://localhost/Atajos/';
+  //ip_wamp = 'http://192.168.1.37/Atajos/get_telefonos.php';
 
   constructor(public http: HttpClient) {
     //console.log('Hello AbstractItemsProvider Provider');
