@@ -4,6 +4,18 @@ import {CallNumber} from '@ionic-native/call-number';
 
 import {AbstractItemsProvider} from '../../providers/abstract-items/abstract-items';
 
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  Marker,
+  GoogleMapsAnimation,
+  MyLocation,
+  Environment,
+  Geocoder,
+  GeocoderResult,
+} from '@ionic-native/google-maps';
+
 /**
  * Generated class for the DetallesPage page.
  *
@@ -22,6 +34,23 @@ export class DetallesPage {
   constructor(public navCtrl: NavController, private provider:AbstractItemsProvider, public navParams: NavParams, private CallNumber:CallNumber) {
     this.item = navParams.get('item');
     console.log(this.item);
+    this.set_imagen();
+    this.loadMap1();
+    
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DetallesPage');
+  }
+
+  Llamar(numero){
+    console.log(numero);
+    this.CallNumber.callNumber(numero,true)
+    .then(res => console.log("Funco",res))
+    .catch(err => console.log("No Funco",err))
+  }
+
+  set_imagen(){
     console.log(this.provider.Categoria_id);
 
     console.log("Categoria: "+this.item['categoria']);
@@ -44,15 +73,41 @@ export class DetallesPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetallesPage');
-  }
+map1: GoogleMap;
+search_address: any;
+isRunning: boolean = false;
 
-  Llamar(numero){
-    console.log(numero);
-    this.CallNumber.callNumber(numero,true)
-    .then(res => console.log("Funco",res))
-    .catch(err => console.log("No Funco",err))
-  }
+loadMap1() { //Funcion para crear el mapa
+  this.search_address = this.item['nombre'] + " , " + this.item['direccion'] + " , " + this.item['nombre_localidad'] + ", Santa Cruz";
+  console.log("Search adress: "+this.search_address);
+  this.map1 = GoogleMaps.create('map_canvas1');
+  // Address -> latitude,longitude
+  Geocoder.geocode({
+    "address": this.search_address //Direccion ingresada
+  }).then((results: GeocoderResult[]) => {
+    console.log(results);
+
+    if (!results.length) {
+      this.isRunning = false;
+      return null;
+    }
+
+    // Add a marker
+    let marker: Marker = this.map1.addMarkerSync({
+      'position': results[0].position,
+      'title':  this.item['nombre']
+    });
+
+    // Move to the position
+    this.map1.animateCamera({
+      'target': marker.getPosition(),
+      'zoom': 16
+    }).then(() => {
+      marker.showInfoWindow();
+      this.isRunning = false;
+    });
+  });
+
+}
  
 }

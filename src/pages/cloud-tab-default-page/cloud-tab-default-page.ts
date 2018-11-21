@@ -29,15 +29,18 @@ export class CloudTabDefaultPagePage {
     };
   }
 
+  //++ Hacer esto funcion de provider para que usen lo mismo mostrar-telefonos.ts y el buscador
   buscar_contacto(busqueda_text){
     //console.log(this.searchbox_html.nativeElement.innerText);
     var longitud : any;
     this.items = [];
     ///+++ Convierte a JSON los datos que se le quiere enviar al php
     var datos_consulta = JSON.stringify({
-      busqueda: busqueda_text
+      busqueda: busqueda_text,
+      buscando: "true"
     });
-    var ip_gettelefonos = this.provider.ip_carpeta+"busqueda.php"; //Direccion del 
+    console.log(datos_consulta);
+    var ip_gettelefonos = this.provider.ip_carpeta+"get_telefonos.php"; //Direccion del 
     console.log(ip_gettelefonos);
     ///+++ post subscribe que manda y recibe del php, 
     this.http
@@ -49,11 +52,12 @@ export class CloudTabDefaultPagePage {
       for(let i = 0; i < longitud; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
         //console.log(data[i]);
         this.items.push({ 
-            nombre: data[i][0],
-            direccion: data[i][1],
-            telefono: data[i][2],
-            pagina: data[i][3],
-            categoria: data[i][4],
+            nombre: data[i]['nombre'],
+            direccion: data[i]['direccion'],
+            telefono: data[i]['telefono'],
+            pagina: data[i]['pagina'],
+            categoria: data[i]['categoria'],
+            nombre_localidad: data[i]['nombre_localidad'],
             id: i
           });
       } //Fin For

@@ -46,6 +46,8 @@ export class MostrarTelefonosPage {
   ionViewDidLoad() {
   }
 
+
+  //++ Hacer esto funcion de provider para que usen lo mismo mostrar-telefonos.ts y el buscador
   cargar_telefonos(){
     //console.log("Cargar Telefonos:");
     var longitud : any;
@@ -56,8 +58,10 @@ export class MostrarTelefonosPage {
     var datos_consulta = JSON.stringify({
       localidad: this.provider.Localidad_id,
       categoria: this.provider.Categoria_id,
-      tipo_localidad: this.provider.Tipo_localidad
+      tipo_localidad: this.provider.Tipo_localidad,
+      buscando: "false"
     });
+    console.log(datos_consulta);
     var ip_gettelefonos = this.provider.ip_carpeta+"get_telefonos.php"; //Direccion del php
     ///+++ post subscribe que manda y recibe del php, 
     this.http
@@ -69,11 +73,12 @@ export class MostrarTelefonosPage {
       for(let i = 0; i < longitud; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
         //console.log(data[i]);
         this.items.push({ 
-            nombre: data[i][0],
-            direccion: data[i][1],
-            telefono: data[i][2],
-            pagina: data[i][3],
-            categoria: data[i][4],
+            nombre: data[i]['nombre'],
+            direccion: data[i]['direccion'],
+            telefono: data[i]['telefono'],
+            pagina: data[i]['pagina'],
+            categoria: data[i]['categoria'],
+            nombre_localidad: data[i]['nombre_localidad'],
             id: i
           });
       } //Fin For
