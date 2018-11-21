@@ -32,6 +32,7 @@
         //$array_telefono_php[$i][2] = $telefono_array[4]; //Telefono
         $array_telefono_php[$i][2] = $array_numero[0]; //Telefono
         $array_telefono_php[$i][3] = $telefono_array[5]; //Pagina Web
+        $array_telefono_php[$i][4] =  $telefono_array[6]; //Categoria
         //$array_telefono_php[$i][3] = $telefono_array[6]; //Imagen
 
 
