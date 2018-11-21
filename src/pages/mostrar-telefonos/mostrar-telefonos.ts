@@ -38,6 +38,7 @@ export class MostrarTelefonosPage {
       this.cargar_telefonos();
     } else {
       this.items = this.provider.items;
+      busqueda = false;
       //this.provider.Categoria_id = this.items
     }
   }
@@ -72,6 +73,7 @@ export class MostrarTelefonosPage {
             direccion: data[i][1],
             telefono: data[i][2],
             pagina: data[i][3],
+            categoria: data[i][4],
             id: i
           });
       } //Fin For
