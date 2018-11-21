@@ -24,8 +24,8 @@ export class DetallesPage {
     console.log(this.item);
     console.log(this.provider.Categoria_id);
 
-
-    var categoria = this.provider.Categoria_id;
+    console.log("Categoria: "+this.item['categoria']);
+    var categoria = this.item['categoria'];
 
     if(categoria == 1 ){
       this.imagen = '../../assets/imgs/categ1.png';

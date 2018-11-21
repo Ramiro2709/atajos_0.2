@@ -32,9 +32,14 @@ export class MostrarTelefonosPage {
         'Authorization': ''
       })
     };
-    this.cargar_telefonos();
-
-
+    var busqueda = navParams.get('busqueda');
+    if (busqueda != true)
+    {
+      this.cargar_telefonos();
+    } else {
+      this.items = this.provider.items;
+      //this.provider.Categoria_id = this.items
+    }
   }
 
   ionViewDidLoad() {
