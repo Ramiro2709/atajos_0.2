@@ -79,6 +79,7 @@ isRunning: boolean = false;
 
 loadMap1() { //Funcion para crear el mapa
   this.search_address = this.item['nombre'] + " , " + this.item['direccion'] + " , " + this.item['nombre_localidad'] + ", Santa Cruz";
+  //this.search_address = "Julia Doufour";
   console.log("Search adress: "+this.search_address);
   this.map1 = GoogleMaps.create('map_canvas1');
   // Address -> latitude,longitude

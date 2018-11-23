@@ -18,8 +18,8 @@
   <h2 style="font-size: 35px">{{item.nombre}}</h2>
   <h2>{{item.direccion}}</h2>
   <!--<h2>{{item.telefono}}</h2>-->
-  <button ion-button icon-start  on-click="Llamar(item.telefono)">
-    <ion-icon name="call"></ion-icon>{{item.telefono}}
+  <button ion-button icon-start *ngFor="let numeros of item.telefono"  on-click="Llamar(numeros)">
+    <ion-icon name="call"></ion-icon>{{numeros}}
   </button>
   <a href="{{item.pagina}}">{{item.pagina}}</a>
 
