@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
 export class CameraTabDefaultPagePage {
 
   constructor(public navCtrl: NavController) {
+    console.log("Pagina: camera-tab");
   }
   
 }

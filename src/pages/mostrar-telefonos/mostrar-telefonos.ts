@@ -56,14 +56,15 @@ export class MostrarTelefonosPage {
 
     ///+++ Convierte a JSON los datos que se le quiere enviar al php
     var datos_consulta = JSON.stringify({
-      localidad: this.provider.Localidad_id,
-      categoria: this.provider.Categoria_id,
-      tipo_localidad: this.provider.Tipo_localidad,
-      buscando: "false"
+      "localidad": this.provider.Localidad_id,
+      "categoria": this.provider.Categoria_id,
+      "tipo_localidad": this.provider.Tipo_localidad,
+      "buscando": "false"
     });
-    console.log(datos_consulta);
+    console.log("Datos Consulta: " +datos_consulta);
     var ip_gettelefonos = this.provider.ip_carpeta+"get_telefonos.php"; //Direccion del php
     ///+++ post subscribe que manda y recibe del php, 
+    console.log(ip_gettelefonos);
     this.http
     .post<string>(ip_gettelefonos,datos_consulta) // (direccion php,JSON)
     .subscribe((data : any) => //data: informacion de recibe de los echos del php

@@ -17,6 +17,7 @@ export class TabsControllerPage {
   tab1Root: any = HomePage;
   tab2Root: any = CloudTabDefaultPagePage;
   constructor(public navCtrl: NavController) {
+    console.log("Pagina: tab-controller");
   }
   goToHome(params){
     if (!params) params = {};

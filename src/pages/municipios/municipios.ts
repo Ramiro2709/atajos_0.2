@@ -18,8 +18,9 @@ export class MunicipiosPage {
     var ip_getmunicipios = this.provider.ip_carpeta+"get_municipios.php";
     var longitud : any;
     var datos_consulta = JSON.stringify({
-    tipo_localidad: this.provider.Tipo_localidad, //municipo, paraje, etc
+    "tipo_localidad": this.provider.Tipo_localidad, //municipo, paraje, etc
     });
+    console.log("Datos consulta municipio:" + datos_consulta );
     this.http
     .post<string>(ip_getmunicipios,datos_consulta)
     .subscribe((data : any) =>
@@ -44,6 +45,7 @@ export class MunicipiosPage {
   ver_municipio(municipio,nombre){
     console.log("ID municipio seleccionado: "+municipio);
     this.provider.Localidad_id = municipio;
+    this.provider.Localidad_id = +this.provider.Localidad_id;
     this.provider.Localidad_Nombre = nombre;
     if (this.provider.Tipo_localidad == 1 || this.provider.Tipo_localidad == 2 )
     {

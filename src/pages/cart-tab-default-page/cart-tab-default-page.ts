@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
 export class CartTabDefaultPagePage {
 
   constructor(public navCtrl: NavController) {
+    console.log("Pagina: cart-tab");
   }
   
 }
