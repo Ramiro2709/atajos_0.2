@@ -36,8 +36,11 @@ export class CloudTabDefaultPagePage {
     this.items = [];
     ///+++ Convierte a JSON los datos que se le quiere enviar al php
     var datos_consulta = JSON.stringify({
-      busqueda: busqueda_text,
-      buscando: "true"
+      "localidad": "false",
+      "categoria": "false",
+      "tipo_localidad": "false",
+      "busqueda": busqueda_text,
+      "buscando": "true"
     });
     console.log(datos_consulta);
     var ip_gettelefonos = this.provider.ip_carpeta+"get_telefonos.php"; //Direccion del 

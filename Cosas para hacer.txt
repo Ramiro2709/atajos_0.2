@@ -1,0 +1,2 @@
+- Logo cargando mientras cargan los contactos
+- cantidad de numeros en cada categoria ("Educacion(6)" o "Seguridad(0)")

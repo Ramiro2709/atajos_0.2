@@ -14,6 +14,11 @@ export class MunicipiosPage {
   items: any[];
   longitud : any;
   constructor(public navCtrl: NavController,  public http: HttpClient,  private provider:AbstractItemsProvider) {
+    if (this.provider.Tipo_localidad >= 3){
+      this.provider.Categoria_id = 0;
+    }
+   
+    
     this.items = [];
     var ip_getmunicipios = this.provider.ip_carpeta+"get_municipios.php";
     var longitud : any;

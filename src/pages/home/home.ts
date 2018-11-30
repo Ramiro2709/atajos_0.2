@@ -25,6 +25,7 @@ export class HomePage {
     console.log("Pagina: Home");
     //this.prueba = AbstractItemsProvider.getUserName();
     //console.log(this.prueba);
+    this.provider.Tipo_localidad = 0;
 
     const httpOptions = { 
       headers: new HttpHeaders({

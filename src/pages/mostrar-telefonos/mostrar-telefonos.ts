@@ -55,10 +55,12 @@ export class MostrarTelefonosPage {
     this.items = [];
 
     ///+++ Convierte a JSON los datos que se le quiere enviar al php
+
     var datos_consulta = JSON.stringify({
       "localidad": this.provider.Localidad_id,
       "categoria": this.provider.Categoria_id,
       "tipo_localidad": this.provider.Tipo_localidad,
+      "busqueda":"false",
       "buscando": "false"
     });
     console.log("Datos Consulta: " +datos_consulta);
@@ -71,6 +73,7 @@ export class MostrarTelefonosPage {
     {
       longitud = data['lenght'];
       console.log("lengh consulta: "+longitud);
+      console.log("Input del php"+data['json']);
       for(let i = 0; i < longitud; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
         //console.log(data[i]);
         this.items.push({ 

@@ -1,14 +1,14 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    
     <ion-title>
       Buscar
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page4">
-    <ion-searchbar [(ngModel)]="searchbox_text" ></ion-searchbar>
-    <button ion-button outline color="assertive" full large style="font-size:20px;" (click)="buscar_contacto(searchbox_text)">Buscar:</button>
+  <ion-searchbar [(ngModel)]="searchbox_text" (animated)="on" searchbar-ios-input-height=""></ion-searchbar>
+  <button ion-button (click)="buscar_contacto(searchbox_text)">
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
 </ion-content>
