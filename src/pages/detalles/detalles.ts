@@ -44,10 +44,12 @@ export class DetallesPage {
   }
 
   Llamar(numero){
-    console.log(numero);
+    /*
     this.CallNumber.callNumber(numero,true)
     .then(res => console.log("Funco",res))
     .catch(err => console.log("No Funco",err))
+    */
+   this.provider.Llamar(numero);
   }
 
   set_imagen(){

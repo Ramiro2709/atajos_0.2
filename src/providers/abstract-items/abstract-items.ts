@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import {CallNumber} from '@ionic-native/call-number';
+import { AlertController } from 'ionic-angular';
+
 /*
   Generated class for the AbstractItemsProvider provider.
 
@@ -15,14 +18,14 @@ export class AbstractItemsProvider {
   Tipo_localidad:number;
   Categoria_id:number;
   lastName: string;
-  ip_carpeta = 'https://www.phcristopher.xyz/Atajos/';
+  //ip_carpeta = 'https://www.phcristopher.xyz/Atajos/';
   //ip_carpeta = 'https://atajossantacruz.000webhostapp.com/Atajos/';
-  //ip_carpeta = 'http://localhost/Atajos/';
+  ip_carpeta = 'http://localhost/Atajos/';
   //ip_carpeta = 'www.phcristopher.xyz/Atajos/':
   items: any;
   //ip_wamp = 'http://192.168.1.37/Atajos/get_telefonos.php';
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private CallNumber:CallNumber , public AlertController: AlertController) {
     //console.log('Hello AbstractItemsProvider Provider');
     //this.firstName = 'Blank';
     //this.lastName = 'Name';
@@ -67,6 +70,33 @@ export class AbstractItemsProvider {
         this.probar_conexion();
         // "http://xxx.xxx.x.xxx/pruebas/Ionic/prueba.php"
       });
+  }
+
+  Llamar(numero){
+    const confirm = this.AlertController.create({
+      title: '¿Llamar?',
+      //message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            //console.log('cancelado');
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            console.log('Llamar');
+            this.CallNumber.callNumber(numero,true)
+            .then(res => console.log("Funco",res))
+            .catch(err => console.log("No Funco",err))
+          }
+        }
+      ]
+    });
+    confirm.present();
+
+    
   }
 
 

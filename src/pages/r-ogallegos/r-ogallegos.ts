@@ -26,7 +26,30 @@ export class ROGallegosPage {
       })
     };
 
-    
+    var datos_consulta_cat = JSON.stringify({
+      "localidad": this.provider.Localidad_id,
+      "tipo_localidad": this.provider.Tipo_localidad,
+    });
+
+    var ip_categoria = this.provider.ip_carpeta+"consulta_categoria.php";
+    console.log(ip_categoria);
+    var array_cantidad = [];
+    this.http
+    .post<string>(ip_categoria,datos_consulta_cat) // (direccion php,JSON)
+    .subscribe((data : any) => //data: informacion de recibe de los echos del php
+    {
+      for(let i = 0; i < 7; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
+        //console.log(data[i]);
+        array_cantidad.push({ 
+            cant: data[i],
+          });
+        }
+        console.log(array_cantidad);
+    },
+    (error : any) =>
+    {
+
+    });
 
   }// Fin constructor
 
