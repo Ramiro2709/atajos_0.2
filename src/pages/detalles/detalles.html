@@ -15,15 +15,19 @@
 
 <ion-content padding style="font-weight:lighter;text-align:center;">
   
-<img src="{{imagen}}" width="250px" height="250px">
-  <h2 style="font-size: 35px">{{item.nombre}}</h2>
-  <h2>{{item.direccion}}</h2>
+<!--<img src="{{imagen}}" width="250px" height="250px">-->
+  <div id="map_canvas1"></div>  
+  <h2 style="font-size: 30x">{{item.nombre}}</h2>
+  <h2 style="font-size: 20x">{{item.direccion}}</h2>
   <button ion-button icon-start *ngFor="let numeros of item.telefono"  on-click="Llamar(numeros)">
     <ion-icon name="call"></ion-icon>{{numeros}}
   </button>
-  <a href="{{item.pagina}}">{{item.pagina}}</a>
 
-  <div id="map_canvas1"></div>
+  <!--<button [attr.href]="{{item.pagina}}">
+    <ion-icon name="globe"></ion-icon>
+ </button>-->
+ <a button href="{{item.pagina}}" ion-button color="secondary"><ion-icon id="pagina" name="globe">Sitio Web</ion-icon></a>
+
   
 
   <!--

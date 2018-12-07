@@ -18,9 +18,9 @@ export class AbstractItemsProvider {
   Tipo_localidad:number;
   Categoria_id:number;
   lastName: string;
-  //ip_carpeta = 'https://www.phcristopher.xyz/Atajos/';
+  ip_carpeta = 'https://www.phcristopher.xyz/Atajos/';
   //ip_carpeta = 'https://atajossantacruz.000webhostapp.com/Atajos/';
-  ip_carpeta = 'http://localhost/Atajos/';
+  //ip_carpeta = 'http://localhost/Atajos/';
   //ip_carpeta = 'www.phcristopher.xyz/Atajos/':
   items: any;
   //ip_wamp = 'http://192.168.1.37/Atajos/get_telefonos.php';

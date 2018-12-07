@@ -14,6 +14,14 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ROGallegosPage {
   nombre : string;
+  array_cantidad2 : any[];
+  cat1 : any;
+  cat2 : any;
+  cat3 : any;
+  cat4 : any;
+  cat5 : any;
+  cat6 : any;
+
   constructor(public navCtrl: NavController, private provider:AbstractItemsProvider,public http: HttpClient) {
     console.log("ROGallegosPage");
     console.log(provider.getLocalidad());
@@ -26,30 +34,7 @@ export class ROGallegosPage {
       })
     };
 
-    var datos_consulta_cat = JSON.stringify({
-      "localidad": this.provider.Localidad_id,
-      "tipo_localidad": this.provider.Tipo_localidad,
-    });
-
-    var ip_categoria = this.provider.ip_carpeta+"consulta_categoria.php";
-    console.log(ip_categoria);
-    var array_cantidad = [];
-    this.http
-    .post<string>(ip_categoria,datos_consulta_cat) // (direccion php,JSON)
-    .subscribe((data : any) => //data: informacion de recibe de los echos del php
-    {
-      for(let i = 0; i < 7; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
-        //console.log(data[i]);
-        array_cantidad.push({ 
-            cant: data[i],
-          });
-        }
-        console.log(array_cantidad);
-    },
-    (error : any) =>
-    {
-
-    });
+    this.ver_categorias();
 
   }// Fin constructor
 
@@ -69,4 +54,49 @@ export class ROGallegosPage {
     this.navCtrl.push(ROGallegosPage);
   }
   */
+
+  ver_categorias(){
+    var datos_consulta_cat = JSON.stringify({
+      "localidad": this.provider.Localidad_id,
+      
+    }); //"tipo_localidad": this.provider.Tipo_localidad,
+
+    var ip_categoria = this.provider.ip_carpeta+"consulta_categoria.php";
+    console.log(ip_categoria);
+    var array_cantidad = [];
+    this.http
+    .post<string>(ip_categoria,datos_consulta_cat) // (direccion php,JSON)
+    .subscribe((data : any) => //data: informacion de recibe de los echos del php
+    {
+      console.log("Cantidad: "+data);
+      
+      for(let i = 0; i < 7; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
+          //console.log(data[i]);
+          array_cantidad.push({ 
+              cant: data[i],
+            });
+            //console.log(array_cantidad[i]['cant']);
+            if (array_cantidad[i]['cant'] >= 1)
+            {
+              var id_cat: string | null | undefined;
+              id_cat = "cat_"+i;
+              //console.log(id_cat);
+              document.getElementById(id_cat).style.visibility = "visible";
+            }
+
+        }
+        console.log(array_cantidad);
+        this.array_cantidad2 = array_cantidad;
+        this.cat1 = array_cantidad[1]['cant'];
+        this.cat2 = array_cantidad[2]['cant'];
+        this.cat3 = array_cantidad[3]['cant'];
+        this.cat4 = array_cantidad[4]['cant'];
+        this.cat5 = array_cantidad[5]['cant'];
+        this.cat6 = array_cantidad[6]['cant'];
+    },
+    (error : any) =>
+    {
+
+    });
+  }
 }
