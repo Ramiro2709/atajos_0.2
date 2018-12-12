@@ -24,7 +24,6 @@ export class ROGallegosPage {
 
   constructor(public navCtrl: NavController, private provider:AbstractItemsProvider,public http: HttpClient) {
     console.log("ROGallegosPage");
-    console.log(provider.getLocalidad());
     this.nombre = provider.Localidad_Nombre;
     //Para que ande el post
     const httpOptions = { 

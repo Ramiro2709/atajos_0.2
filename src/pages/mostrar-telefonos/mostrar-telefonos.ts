@@ -67,15 +67,13 @@ export class MostrarTelefonosPage {
     var ip_gettelefonos = this.provider.ip_carpeta+"get_telefonos.php"; //Direccion del php
     ///+++ post subscribe que manda y recibe del php, 
     console.log(ip_gettelefonos);
-    this.http
-    .post<string>(ip_gettelefonos,datos_consulta) // (direccion php,JSON)
-    .subscribe((data : any) => //data: informacion de recibe de los echos del php
+    this.http.post<string>(ip_gettelefonos,datos_consulta) // (direccion php,JSON)
+    .subscribe((data : any) => //data: informacion de recibe del php
     {
       longitud = data['lenght'];
-      console.log("lengh consulta: "+longitud);
-      console.log("Input del php"+data['json']);
-      for(let i = 0; i < longitud; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
-        //console.log(data[i]);
+      //console.log("lengh consulta: "+longitud);
+      //console.log("Input del php"+data['json']);
+      for(let i = 0; i < longitud; i++){ //Recibe cada uno de los telefonos y sus datos
         this.items.push({ 
             nombre: data[i]['nombre'],
             direccion: data[i]['direccion'],
@@ -94,9 +92,8 @@ export class MostrarTelefonosPage {
   } //Fin
 
   ver_detalles(item){
-    //alert(item.text);
     console.log(item);
-    this.navCtrl.push(DetallesPage, { //Que vaya a pagina detalles
+    this.navCtrl.push(DetallesPage, { //Cambia a la pagina "detalles" enviando variable
       item:item
     });
   }

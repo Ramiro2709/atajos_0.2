@@ -34,7 +34,7 @@ export class HomePage {
       })
     };
 
-    this.provider.probar_conexion();
+    //this.provider.probar_conexion();
     
 
   }// Fin constructor

@@ -13,64 +13,13 @@ import { AlertController } from 'ionic-angular';
 @Injectable()
 export class AbstractItemsProvider {
 
-  Localidad_id:number;
-  Localidad_Nombre:string;
-  Tipo_localidad:number;
-  Categoria_id:number;
-  lastName: string;
-  ip_carpeta = 'https://www.phcristopher.xyz/Atajos/';
-  //ip_carpeta = 'https://atajossantacruz.000webhostapp.com/Atajos/';
-  //ip_carpeta = 'http://localhost/Atajos/';
-  //ip_carpeta = 'www.phcristopher.xyz/Atajos/':
-  items: any;
-  //ip_wamp = 'http://192.168.1.37/Atajos/get_telefonos.php';
-
-  constructor(public http: HttpClient, private CallNumber:CallNumber , public AlertController: AlertController) {
-    //console.log('Hello AbstractItemsProvider Provider');
-    //this.firstName = 'Blank';
-    //this.lastName = 'Name';
-  }
-
-  setLocalidad(Localidad_id) {
-    //this.firstName = firstName;
-    //this.lastName = lastName; 
-    this.Localidad_id = Localidad_id;      
-  }
-
-  getLocalidad() {
-    //return this.firstName + ' ' + this.lastName;
-    return this.Localidad_id;
-  }  
-
-  setCategoria(Categoria_id) {
-    //this.firstName = firstName;
-    //this.lastName = lastName; 
-    this.Categoria_id = Categoria_id;      
-  }
-
-  getCategoria() {
-    //return this.firstName + ' ' + this.lastName;
-    return this.Categoria_id;
-  }  
-
-  probar_conexion(){
-    var prueba_conexion =  this.ip_carpeta + "conexion.php";
-    this.http.get(prueba_conexion)
-    .subscribe((data : any) =>
-      {
-        console.log(prueba_conexion);
-        console.log("Encontro IP");
-
-      },
-      (error : any) =>
-      {
-        console.log(prueba_conexion);
-        console.log("No encontro");
-        //this.ip_carpeta = prompt("No se encontro el servidor", "http://192.168.0.36/Atajos/");
-        this.probar_conexion();
-        // "http://xxx.xxx.x.xxx/pruebas/Ionic/prueba.php"
-      });
-  }
+  Localidad_id:number;      //Id de la localidad
+  Localidad_Nombre:string;  //Nombre de la localidad
+  Tipo_localidad:number;    //Tipo de la localidad seleccionada
+  Categoria_id:number;      //Categoria seleccionada
+  items: any;               //Array con detalles del contacto
+  ip_carpeta = 'https://www.phcristopher.xyz/Atajos/';  //Servidor Externo
+  //ip_carpeta = 'http://localhost/Atajos/';            //Servidor Local
 
   Llamar(numero){
     const confirm = this.AlertController.create({
@@ -95,9 +44,30 @@ export class AbstractItemsProvider {
       ]
     });
     confirm.present();
-
-    
   }
 
+  constructor(public http: HttpClient, private CallNumber:CallNumber , public AlertController: AlertController) {
 
+  }
+
+  /*
+  probar_conexion(){
+    var prueba_conexion =  this.ip_carpeta + "conexion.php";
+    this.http.get(prueba_conexion)
+    .subscribe((data : any) =>
+      {
+        console.log(prueba_conexion);
+        console.log("Encontro IP");
+
+      },
+      (error : any) =>
+      {
+        console.log(prueba_conexion);
+        console.log("No encontro");
+        //this.ip_carpeta = prompt("No se encontro el servidor", "http://192.168.0.36/Atajos/");
+        this.probar_conexion();
+        // "http://xxx.xxx.x.xxx/pruebas/Ionic/prueba.php"
+      });
+  }
+  */
 }
