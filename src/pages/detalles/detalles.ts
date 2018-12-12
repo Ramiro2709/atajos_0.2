@@ -36,11 +36,19 @@ export class DetallesPage {
     console.log(this.item);
     this.set_imagen();
     this.loadMap1();
+    console.log("Pagina web: " + this.item.pagina);
+    
+    
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetallesPage');
+    if (this.item.pagina == ""){
+      document.getElementById("pagina_boton").style.visibility = "hidden";
+      document.getElementById("pagina_boton").style.position = "absolute";
+      //angular.element( document.querySelector( '#some-id' ) );
+    }
   }
 
   Llamar(numero){
@@ -80,7 +88,8 @@ search_address: any;
 isRunning: boolean = false;
 
 loadMap1() { //Funcion para crear el mapa
-  this.search_address = this.item['nombre'] + " , " + this.item['direccion'] + " , " + this.item['nombre_localidad'] + ", Santa Cruz";
+  //this.search_address = this.item['nombre'] + " , " + this.item['direccion'] + " , " + this.item['nombre_localidad'] + ", Santa Cruz";
+  this.search_address = this.item['nombre'] + " " + this.item['direccion'] + " " + this.item['nombre_localidad'] + " Santa Cruz";
   //this.search_address = "Julia Doufour";
   console.log("Search adress: "+this.search_address);
   this.map1 = GoogleMaps.create('map_canvas1');

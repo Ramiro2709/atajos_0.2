@@ -23,6 +23,7 @@ import { DetallesPage } from '../detalles/detalles';
 export class MostrarTelefonosPage {
 
   items: any[];
+  busqueda: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: HttpClient, private provider:AbstractItemsProvider) {
     console.log("Pagina: Mostrar-telefonos");
     //Para que ande el post
@@ -32,18 +33,32 @@ export class MostrarTelefonosPage {
         'Authorization': ''
       })
     };
-    var busqueda = navParams.get('busqueda');
-    if (busqueda != true)
+
+    this.busqueda = navParams.get('busqueda');
+    //console.log("Busqueda: " + this.busqueda);
+    if (this.busqueda != true)
     {
       this.cargar_telefonos();
-    } else {
+    } else if (this.busqueda == true) {
       this.items = this.provider.items;
-      busqueda = false;
+      
+
       //this.provider.Categoria_id = this.items
     }
   }
 
+  ocultar_spiner(){
+    console.log(document.getElementById("espiner2"));
+    document.getElementById("espiner2").style.visibility = "hidden";
+      document.getElementById("espiner2").style.position = "absolute";
+  }
+
   ionViewDidLoad() {
+    if (this.busqueda == true){
+      //console.log("Busqueda true");
+      this.ocultar_spiner();
+      this.busqueda = false;
+    }
   }
 
 
@@ -70,6 +85,9 @@ export class MostrarTelefonosPage {
     this.http.post<string>(ip_gettelefonos,datos_consulta) // (direccion php,JSON)
     .subscribe((data : any) => //data: informacion de recibe del php
     {
+      console.log(document.getElementById("espiner2"));
+      document.getElementById("espiner2").style.visibility = "hidden";
+      document.getElementById("espiner2").style.position = "absolute";
       longitud = data['lenght'];
       //console.log("lengh consulta: "+longitud);
       //console.log("Input del php"+data['json']);
@@ -84,10 +102,11 @@ export class MostrarTelefonosPage {
             id: i
           });
       } //Fin For
+      
     },
     (error : any) =>
     {
-
+      this.provider.error_conexion();
     });
   } //Fin
 

@@ -39,10 +39,12 @@ export class MunicipiosPage {
             id: i
           });  
       } //Fin For
+      document.getElementById("espiner3").style.visibility = "hidden";
+      document.getElementById("espiner3").style.position = "absolute";
     },
     (error : any) =>
     {
-
+      this.provider.error_conexion();
     });
 
   } //Fin constructor

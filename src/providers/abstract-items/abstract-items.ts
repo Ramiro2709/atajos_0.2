@@ -24,7 +24,6 @@ export class AbstractItemsProvider {
   Llamar(numero){
     const confirm = this.AlertController.create({
       title: '¿Llamar?',
-      //message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
       buttons: [
         {
           text: 'Cancelar',
@@ -48,6 +47,15 @@ export class AbstractItemsProvider {
 
   constructor(public http: HttpClient, private CallNumber:CallNumber , public AlertController: AlertController) {
 
+  }
+
+  error_conexion(){
+      const alert = this.AlertController.create({
+        title: 'NO HAY CONEXIÓN :(',
+        subTitle: '',
+        buttons: ['OK']
+      });
+      alert.present();
   }
 
   /*

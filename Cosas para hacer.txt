@@ -1,7 +1,7 @@
 csmanfuert@gmail.com
 
 - Logo cargando mientras cargan los contactos
-- cantidad de numeros en cada categoria ("Educacion(6)" o "Seguridad(0)")
+//- cantidad de numeros en cada categoria ("Educacion(6)" o "Seguridad(0)")
 
 en rio gallegos:
 
@@ -13,7 +13,11 @@ en rio gallegos:
 
 ultimo Nacion //En cada localidad, O en su propia categoria
 
-- Achichar las fuentes de los titulos y dir
-- Poner boton o etiqueta la pagina web
-- Confirmacion en boton de llamar
+//- Achichar las fuentes de los titulos y dir
+//- Poner boton o etiqueta la pagina web
+//- Confirmacion en boton de llamar
 - mostrar gobierno, municipio, nacion
+
+- Usuarios
+- Que tengan favoritos
+- Favoritos se guarden localmente

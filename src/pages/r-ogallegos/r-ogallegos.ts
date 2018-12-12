@@ -82,10 +82,13 @@ export class ROGallegosPage {
               //console.log(id_cat);
               document.getElementById(id_cat).style.visibility = "visible";
             }
-
         }
-        console.log(array_cantidad);
+        document.getElementById("espiner").style.visibility = "hidden";
+        document.getElementById("espiner").style.position = "absolute";
+        //console.log(array_cantidad);
         this.array_cantidad2 = array_cantidad;
+        this.array_cantidad2["uno"] = array_cantidad[1];
+        //console.log(this.array_cantidad2);
         this.cat1 = array_cantidad[1]['cant'];
         this.cat2 = array_cantidad[2]['cant'];
         this.cat3 = array_cantidad[3]['cant'];
@@ -95,7 +98,7 @@ export class ROGallegosPage {
     },
     (error : any) =>
     {
-
+      this.provider.error_conexion();
     });
   }
 }
