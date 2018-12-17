@@ -47,21 +47,23 @@ export class MostrarTelefonosPage {
     }
   }
 
+  /*
   ocultar_spiner(){
     console.log(document.getElementById("espiner2"));
     document.getElementById("espiner2").style.visibility = "hidden";
       document.getElementById("espiner2").style.position = "absolute";
   }
+  */
 
   ionViewDidLoad() {
+    
     if (this.busqueda == true){
       //console.log("Busqueda true");
-      this.ocultar_spiner();
+      //this.ocultar_spiner();
+      this.provider.loading.dismiss();
       this.busqueda = false;
     }
   }
-
-
   //++ Hacer esto funcion de provider para que usen lo mismo mostrar-telefonos.ts y el buscador
   cargar_telefonos(){
     //console.log("Cargar Telefonos:");
@@ -82,12 +84,11 @@ export class MostrarTelefonosPage {
     var ip_gettelefonos = this.provider.ip_carpeta+"get_telefonos.php"; //Direccion del php
     ///+++ post subscribe que manda y recibe del php, 
     console.log(ip_gettelefonos);
+    this.provider.ShowLoader();
     this.http.post<string>(ip_gettelefonos,datos_consulta) // (direccion php,JSON)
     .subscribe((data : any) => //data: informacion de recibe del php
     {
-      console.log(document.getElementById("espiner2"));
-      document.getElementById("espiner2").style.visibility = "hidden";
-      document.getElementById("espiner2").style.position = "absolute";
+      this.provider.loading.dismiss();
       longitud = data['lenght'];
       //console.log("lengh consulta: "+longitud);
       //console.log("Input del php"+data['json']);
@@ -99,7 +100,7 @@ export class MostrarTelefonosPage {
             pagina: data[i]['pagina'],
             categoria: data[i]['categoria'],
             nombre_localidad: data[i]['nombre_localidad'],
-            id: i
+            //id: i
           });
       } //Fin For
       
@@ -111,7 +112,7 @@ export class MostrarTelefonosPage {
   } //Fin
 
   ver_detalles(item){
-    console.log(item);
+    //console.log(item);
     this.navCtrl.push(DetallesPage, { //Cambia a la pagina "detalles" enviando variable
       item:item
     });

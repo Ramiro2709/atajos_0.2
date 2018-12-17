@@ -3,15 +3,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CallNumber} from '@ionic-native/call-number';
 
 import {AbstractItemsProvider} from '../../providers/abstract-items/abstract-items';
+import {TasksServiceProvider } from '../../providers/tasks-service/tasks-service';
 
 import {
   GoogleMaps,
   GoogleMap,
-  GoogleMapsEvent,
+  //GoogleMapsEvent,
   Marker,
-  GoogleMapsAnimation,
-  MyLocation,
-  Environment,
+  //GoogleMapsAnimation,
+  //MyLocation,
+  //Environment,
   Geocoder,
   GeocoderResult,
 } from '@ionic-native/google-maps';
@@ -31,15 +32,17 @@ import {
 export class DetallesPage {
   item: any;
   imagen: any;
-  constructor(public navCtrl: NavController, private provider:AbstractItemsProvider, public navParams: NavParams, private CallNumber:CallNumber) {
+  constructor(
+    public navCtrl: NavController, 
+    private provider:AbstractItemsProvider, 
+    public navParams: NavParams, 
+    private CallNumber:CallNumber,
+    public tasksService: TasksServiceProvider) {
     this.item = navParams.get('item');
     console.log(this.item);
     this.set_imagen();
     this.loadMap1();
     console.log("Pagina web: " + this.item.pagina);
-    
-    
-    
   }
 
   ionViewDidLoad() {
@@ -49,6 +52,10 @@ export class DetallesPage {
       document.getElementById("pagina_boton").style.position = "absolute";
       //angular.element( document.querySelector( '#some-id' ) );
     }
+  }
+
+  InsertarFavorito(){
+    this.tasksService.InsertFavorito(this.item);
   }
 
   Llamar(numero){

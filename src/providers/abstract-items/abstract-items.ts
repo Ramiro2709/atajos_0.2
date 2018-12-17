@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import {CallNumber} from '@ionic-native/call-number';
-import { AlertController } from 'ionic-angular';
+import { AlertController,LoadingController } from 'ionic-angular';
 
 /*
   Generated class for the AbstractItemsProvider provider.
@@ -20,6 +20,7 @@ export class AbstractItemsProvider {
   items: any;               //Array con detalles del contacto
   ip_carpeta = 'https://www.phcristopher.xyz/Atajos/';  //Servidor Externo
   //ip_carpeta = 'http://localhost/Atajos/';            //Servidor Local
+  loading : any;
 
   Llamar(numero){
     const confirm = this.AlertController.create({
@@ -45,7 +46,11 @@ export class AbstractItemsProvider {
     confirm.present();
   }
 
-  constructor(public http: HttpClient, private CallNumber:CallNumber , public AlertController: AlertController) {
+  constructor(
+    public http: HttpClient, 
+    private CallNumber:CallNumber , 
+    public AlertController: AlertController,
+    public loadingCtrl: LoadingController) {
 
   }
 
@@ -56,6 +61,13 @@ export class AbstractItemsProvider {
         buttons: ['OK']
       });
       alert.present();
+  }
+
+  ShowLoader(){
+    this.loading = this.loadingCtrl.create({
+      content:"Cargando..."
+    });
+    this.loading.present();
   }
 
   /*

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http'; //// Para que tome al php
-import { HttpHeaders } from '@angular/common/http';
+//import { HttpHeaders } from '@angular/common/http';
 import {AbstractItemsProvider} from '../../providers/abstract-items/abstract-items';
 import { ROGallegosPage } from '../r-ogallegos/r-ogallegos';
 import { MostrarTelefonosPage } from '../mostrar-telefonos/mostrar-telefonos';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'page-municipios',
@@ -13,12 +14,16 @@ import { MostrarTelefonosPage } from '../mostrar-telefonos/mostrar-telefonos';
 export class MunicipiosPage {
   items: any[];
   longitud : any;
-  constructor(public navCtrl: NavController,  public http: HttpClient,  private provider:AbstractItemsProvider) {
+
+  constructor(
+    public navCtrl: NavController,
+    public http: HttpClient,
+    private provider:AbstractItemsProvider,
+    public loadingCtrl: LoadingController) {
     if (this.provider.Tipo_localidad >= 3){
       this.provider.Categoria_id = 0;
     }
    
-    
     this.items = [];
     var ip_getmunicipios = this.provider.ip_carpeta+"get_municipios.php";
     var longitud : any;
@@ -26,10 +31,12 @@ export class MunicipiosPage {
     "tipo_localidad": this.provider.Tipo_localidad, //municipo, paraje, etc
     });
     console.log("Datos consulta municipio:" + datos_consulta );
+    this.provider.ShowLoader();
     this.http
     .post<string>(ip_getmunicipios,datos_consulta)
     .subscribe((data : any) =>
     {
+      this.provider.loading.dismiss();
       this.longitud = data['lenght'];
       for(let i = 0; i < this.longitud; i++){
         //console.log(data[i][0]);
@@ -39,8 +46,10 @@ export class MunicipiosPage {
             id: i
           });  
       } //Fin For
+      /*
       document.getElementById("espiner3").style.visibility = "hidden";
       document.getElementById("espiner3").style.position = "absolute";
+      */
     },
     (error : any) =>
     {
@@ -60,7 +69,6 @@ export class MunicipiosPage {
     }else{
       this.navCtrl.push(MostrarTelefonosPage);
     }
-    
   }
   
 }

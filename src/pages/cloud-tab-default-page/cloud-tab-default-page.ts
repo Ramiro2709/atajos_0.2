@@ -46,6 +46,7 @@ export class CloudTabDefaultPagePage {
     var ip_gettelefonos = this.provider.ip_carpeta+"get_telefonos.php"; //Direccion del 
     console.log(ip_gettelefonos);
     ///+++ post subscribe que manda y recibe del php, 
+    this.provider.ShowLoader();
     this.http
     .post<string>(ip_gettelefonos,datos_consulta) // (direccion php,JSON)
     .subscribe((data : any) => //data: informacion de recibe de los echos del php

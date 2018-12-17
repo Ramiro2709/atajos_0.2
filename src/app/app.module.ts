@@ -26,6 +26,9 @@ import {CallNumber} from '@ionic-native/call-number';
 //Imports Angular
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+import { SQLite } from '@ionic-native/sqlite';
+import { TasksServiceProvider } from '../providers/tasks-service/tasks-service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -71,7 +74,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     AndroidPermissions,
     HttpClientModule,
     CallNumber,
-    HttpClient
+    HttpClient,
+    SQLite,
+    TasksServiceProvider
   ]
 })
 export class AppModule {}

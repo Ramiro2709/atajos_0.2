@@ -63,12 +63,13 @@ export class ROGallegosPage {
     var ip_categoria = this.provider.ip_carpeta+"consulta_categoria.php";
     console.log(ip_categoria);
     var array_cantidad = [];
+    this.provider.ShowLoader();
     this.http
     .post<string>(ip_categoria,datos_consulta_cat) // (direccion php,JSON)
     .subscribe((data : any) => //data: informacion de recibe de los echos del php
     {
       console.log("Cantidad: "+data);
-      
+      this.provider.loading.dismiss();
       for(let i = 0; i < 7; i++){ ///+++ Recibe cada uno de los telefonos y sus datos
           //console.log(data[i]);
           array_cantidad.push({ 
@@ -83,8 +84,10 @@ export class ROGallegosPage {
               document.getElementById(id_cat).style.visibility = "visible";
             }
         }
+        /*
         document.getElementById("espiner").style.visibility = "hidden";
         document.getElementById("espiner").style.position = "absolute";
+        */
         //console.log(array_cantidad);
         this.array_cantidad2 = array_cantidad;
         this.array_cantidad2["uno"] = array_cantidad[1];

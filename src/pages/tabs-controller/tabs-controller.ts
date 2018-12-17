@@ -7,6 +7,7 @@ import { ComisionesDeFomentosPage } from '../comisiones-de-fomentos/comisiones-d
 import { ParajesPage } from '../parajes/parajes';
 import { UrgenciasPage } from '../urgencias/urgencias';
 import { CloudTabDefaultPagePage } from '../cloud-tab-default-page/cloud-tab-default-page';
+import {CartTabDefaultPagePage} from '../cart-tab-default-page/cart-tab-default-page';
 
 @Component({
   selector: 'page-tabs-controller',
@@ -16,6 +17,7 @@ export class TabsControllerPage {
 
   tab1Root: any = HomePage;
   tab2Root: any = CloudTabDefaultPagePage;
+  tab3Root: any = CartTabDefaultPagePage;
   constructor(public navCtrl: NavController) {
     console.log("Pagina: tab-controller");
   }
