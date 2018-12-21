@@ -75,8 +75,18 @@ export class TasksServiceProvider {
       .catch(e => console.log(e));
 }
 
+  
   InsertFavorito(item){
     //console.log("Entro InsertFavorito");
+    let sql_select = 'SELECT FROM contactos_local WHERE id =? AND nombre_localidad = ? AND nombre = ?';
+    this.db.executeSql(sql_select,[item['id'],item['nombre_localidad'],item['nombre']])
+      .then(() => {
+          console.log("Exito select");
+        })
+      .catch(e => {
+          console.log("Error select");
+      });
+    
     let sql = 'INSERT INTO contactos_local(id,nombre_localidad,nombre,direccion,pagina,categoria) VALUES(?,?,?,?,?,?)';
     console.log(
       item['id'] + " - " +
