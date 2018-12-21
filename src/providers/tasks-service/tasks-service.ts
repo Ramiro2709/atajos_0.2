@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SQLiteObject } from '@ionic-native/sqlite';
-
+import { AlertController } from 'ionic-angular';
 
 
 /*
@@ -16,7 +16,8 @@ export class TasksServiceProvider {
   db: SQLiteObject = null;
 
   constructor(
-    public http: HttpClient) {
+    public http: HttpClient,
+    public AlertController: AlertController) {
     console.log('Hello TasksServiceProvider Provider');
   }
 
@@ -88,10 +89,21 @@ export class TasksServiceProvider {
     return this.db.executeSql(sql, [item['id'],item['nombre_localidad'],item['nombre'],item['direccion'],item['pagina'],item['categoria']])
       .then(() => {
         console.log('Insertado Favorito');
-        //this.fav.getAllTasks();
-      })
-      
-      .catch(e => console.log("Error Insertando"));
+        const alert = this.AlertController.create({
+          title: 'Favorito guardado',
+          subTitle: '',
+          buttons: ['OK']
+        });
+        alert.present();
+          //this.fav.getAllTasks();
+        })
+      .catch(e => {
+        const alert = this.AlertController.create({
+          title: 'Error al guardar favorito',
+          subTitle: '',
+          buttons: ['OK']
+        });
+      });
   }
 
   /*
