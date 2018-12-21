@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Cart Tab Default Page
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page3">
+  <!-- <ion-spinner class="espiner" id="espiner5"></ion-spinner> -->
+  <ion-list>
+    <button ion-item *ngFor="let item of contactos" (click)="ver_detalles(item)">
+      {{item.nombre}}
+    </button>  
+  </ion-list>
+</ion-content>
