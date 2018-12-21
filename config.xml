@@ -3,7 +3,7 @@
     <name>Atajos</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.0.7:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <access origin="http://*" />
     <access origin="https://*" />
