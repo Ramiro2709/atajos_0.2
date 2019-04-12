@@ -14,6 +14,7 @@ import { ParajesPage } from '../pages/parajes/parajes';
 import { UrgenciasPage } from '../pages/urgencias/urgencias';
 import { MostrarTelefonosPage } from '../pages/mostrar-telefonos/mostrar-telefonos';
 import { DetallesPage } from '../pages/detalles/detalles';
+import { ContactoPage } from '../pages/contacto/contacto';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,7 +44,8 @@ import { TasksServiceProvider } from '../providers/tasks-service/tasks-service';
     ParajesPage,
     UrgenciasPage,
     MostrarTelefonosPage,
-    DetallesPage 
+    DetallesPage,
+    ContactoPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { TasksServiceProvider } from '../providers/tasks-service/tasks-service';
     ParajesPage,
     UrgenciasPage,
     MostrarTelefonosPage,
-    DetallesPage 
+    DetallesPage,
+    ContactoPage
   ],
   providers: [
     StatusBar,

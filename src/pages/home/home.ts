@@ -5,11 +5,14 @@ import { MunicipiosPage } from '../municipios/municipios';
 import { ComisionesDeFomentosPage } from '../comisiones-de-fomentos/comisiones-de-fomentos';
 import { ParajesPage } from '../parajes/parajes';
 import { UrgenciasPage } from '../urgencias/urgencias';
+import {ContactoPage} from '../contacto/contacto';
 
 import {AbstractItemsProvider} from '../../providers/abstract-items/abstract-items';
 
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'page-home',
@@ -72,6 +75,10 @@ export class HomePage {
   goToUrgencias(params){
     if (!params) params = {};
     this.navCtrl.push(UrgenciasPage);
+  }
+  goToContacto(params){
+    if (!params) params = {};
+    this.navCtrl.push(ContactoPage);
   }
 
   

@@ -14,10 +14,31 @@
 
 
 <ion-content padding>
-    <!-- <ion-spinner class="espiner" id="espiner2"></ion-spinner> -->
   <ion-list>
+    <!--
     <button ion-item *ngFor="let item of items" (click)="ver_detalles(item)">
       {{item.nombre}}
-    </button>  
+    </button> 
+     --> 
+     <!--
+    <ion-item *ngFor="let item of items">
+      <button ion-item (click)="ver_detalles(item)">
+        <ion-scroll scrollX="true" >
+          {{item.nombre}}
+        </ion-scroll>
+      </button> 
+    </ion-item>
+    -->
+    <button ion-item *ngFor="let item of items" (click)="ver_detalles(item)">
+        {{item.nombre}}
+    </button> 
   </ion-list>
+
+  <!--
+  <div class="blue-btn">
+      <a class="first-link" href="">
+      This is a very long text, it will take a long time to reach the end AAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCC
+      </a>
+    </div>
+  -->
 </ion-content>
